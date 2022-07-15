@@ -41,50 +41,68 @@ public class VehicleUI {
 			System.out.println("Bus not available");
 		} else {
 			System.out.println("Bus available");
-//			Set<Map.Entry<Integer, Bus>> setofMapEntrys = busList.entrySet();
-//			Iterator<Map.Entry<Integer, Bus>> mapIterators = setofMapEntrys.iterator();
-//			while (mapIterators.hasNext()) {
-//				Map.Entry<Integer, Bus> mapEntry = (Map.Entry<Integer, Bus>) mapIterators.next();
-//				Bus bus = mapEntry.getValue();
-//				if(bus.getKiloMeterRunned() == min) {
-//					System.out.println("BusNo: "+bus.getBusNumber());
-//				}
-			System.out.println("BusNo: " + bus1.getBusNumber());
-			userDetails();
+			System.out.println(bus1.toString());
+			System.out.println("Do you still want to book the bus");
+			System.out.println("Press 1 to book");
+			System.out.println("Press 2 to exit");
+			Scanner sc = new Scanner(System.in);
+			try {
+				int input = sc.nextInt();
+				if (input == 1) {
+					userDetails();
+				} else if (input == 2) {
+					System.out.println("Thank You");
+				}
+			} finally {
+				sc.close();
+			}
 		}
 	}
 
 	public static void userDetails() {
 		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter Name :");
-		String name = sc.nextLine();
 		try {
-			Validator.checkNameContainsOnlyString(name);
-		} catch (InvalidInputDataException err) {
-			err.printStackTrace();
-			return;
-		}
+			System.out.println("Enter Name :");
+			String name = sc.nextLine();
+			try {
+				Validator.checkStringOnly(name);
+			} catch (InvalidInputDataException err) {
+				System.out.println(err.getMessage());
+				return;
+			}
 
-		System.out.println("Enter Phone Number");
-		String phone = sc.nextLine();
-		try {
-			Validator.checkPhone(phone);
-		} catch (InvalidInputDataException e) {
-			e.printStackTrace();
-			return;
-		}
+			System.out.println("Enter Phone Number");
+			String phone = sc.nextLine();
+			try {
+				Validator.checkPhone(phone);
+			} catch (InvalidInputDataException e) {
+				System.out.println(e.getMessage());
+				return;
+			}
 
-		System.out.println("Enter Address :");
-		String address = sc.nextLine();
-		try {
-			Validator.checkNameContainsOnlyString(address);
-		} catch (InvalidInputDataException err) {
-			err.printStackTrace();
-			return;
+			System.out.println("Enter Address :");
+			String address = sc.nextLine();
+			try {
+				Validator.checkStringOnly(address);
+			} catch (InvalidInputDataException err) {
+				System.out.println(err.getMessage());
+				return;
+			}
+			User user = new User(name, Long.parseLong(phone), address);
+			System.out.println(user.toString());
+			System.out.println("Bus Booked");
+		} finally {
+			sc.close();
 		}
-		User user = new User(name, Long.parseLong(phone), address);
-		System.out.println(user.toString());
-		System.out.println("Bus Booked");
 	}
 }
+
+//System.out.println("Bus available");
+//Set<Map.Entry<Integer, Bus>> setofMapEntrys = busList.entrySet();
+//Iterator<Map.Entry<Integer, Bus>> mapIterators = setofMapEntrys.iterator();
+//while (mapIterators.hasNext()) {
+//	Map.Entry<Integer, Bus> mapEntry = (Map.Entry<Integer, Bus>) mapIterators.next();
+//	Bus bus = mapEntry.getValue();
+//	if(bus.getKiloMeterRunned() == min) {
+//		System.out.println("BusNo: "+bus.getBusNumber());
+//	}
