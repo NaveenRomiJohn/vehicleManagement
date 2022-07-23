@@ -1,4 +1,4 @@
-package com.chainsys.vehiclemanagement;
+package com.chainsys.vehiclemanagement.commonutil;
 
 public class InvalidInputDataException extends Exception{ 
     public InvalidInputDataException() {

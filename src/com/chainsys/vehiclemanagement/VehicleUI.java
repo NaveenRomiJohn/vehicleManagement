@@ -6,12 +6,17 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import com.chainsys.vehiclemanagement.commonutil.InvalidInputDataException;
+import com.chainsys.vehiclemanagement.commonutil.Validator;
+import com.chainsys.vehiclemanagement.pojo.Bus;
+import com.chainsys.vehiclemanagement.pojo.User;
+
 public class VehicleUI {
 	public static void busList() {
 		Map<Integer, Bus> busList = new HashMap<Integer, Bus>();
 		Bus b1 = new Bus("TN57CG1234", 100, "Available");
 		Bus b2 = new Bus("TN57CG1235", 50, "Not Available");
-		Bus b3 = new Bus("TN57CG1236", 150, "Available");
+		Bus b3 = new Bus("TN57CG1236", 30, "Available");
 		Bus b4 = new Bus("TN57CG1237", 500, "Not Available");
 		Bus b5 = new Bus("TN57CG1238", 40, "Available");
 		busList.put(1, b1);
@@ -32,7 +37,7 @@ public class VehicleUI {
 				count++;
 				if (bus.getKiloMeterRunned() < min) {
 
-					min = (float) bus.getKiloMeterRunned();
+					min = bus.getKiloMeterRunned();
 					bus1 = bus;
 				}
 			}
@@ -42,6 +47,7 @@ public class VehicleUI {
 		} else {
 			System.out.println("Bus available");
 			System.out.println(bus1.toString());
+			System.out.println();
 			System.out.println("Do you still want to book the bus");
 			System.out.println("Press 1 to book");
 			System.out.println("Press 2 to exit");
@@ -51,7 +57,7 @@ public class VehicleUI {
 				if (input == 1) {
 					userDetails();
 				} else if (input == 2) {
-					System.out.println("Thank You");
+					System.out.println("Thank you for contacting us....");
 				}
 			} finally {
 				sc.close();
@@ -62,6 +68,8 @@ public class VehicleUI {
 	public static void userDetails() {
 		Scanner sc = new Scanner(System.in);
 		try {
+			System.out.println("Please enter your details");
+			System.out.println();
 			System.out.println("Enter Name :");
 			String name = sc.nextLine();
 			try {
@@ -90,7 +98,7 @@ public class VehicleUI {
 			}
 			User user = new User(name, Long.parseLong(phone), address);
 			System.out.println(user.toString());
-			System.out.println("Bus Booked");
+			System.out.println("Bus booked successfully");
 		} finally {
 			sc.close();
 		}

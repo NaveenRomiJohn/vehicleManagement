@@ -1,4 +1,4 @@
-package com.chainsys.vehiclemanagement;
+package com.chainsys.vehiclemanagement.commonutil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package com.chainsys.vehiclemanagement;
+package com.chainsys.vehiclemanagement.pojo;
 
 public class Bus {
 	private String busNumber;
